@@ -9,8 +9,14 @@ let Add (numbers : string) =
         let customDelimiters = inputs.[0].Split([|"["; "]"; "/"|],System.StringSplitOptions.RemoveEmptyEntries)
         delimiters <- Array.append delimiters customDelimiters
         numbers <- inputs.[1]
-    let numbers = numbers.Split(delimiters, System.StringSplitOptions.RemoveEmptyEntries)
-                  |> Array.map int
+
+    let numbersString = numbers.Split(delimiters, System.StringSplitOptions.None)
+    let mutable numbers = [||]
+    try
+        numbers <- Array.map int numbersString
+    with
+       | ex -> printfn "An unexpected exception occurred: %s" ex.Message
+    printf "Numbers %A" numbers;
     let negativeNumbers = numbers |> Array.filter(fun n -> n < 0)
     if negativeNumbers.Length > 0 then
         raise(NegativesNoAllowed negativeNumbers)
