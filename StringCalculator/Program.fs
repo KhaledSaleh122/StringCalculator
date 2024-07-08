@@ -9,5 +9,5 @@ try
 with
 | StringCalculator.NegativesNoAllowed negs ->
     printfn "Negatives not allowed: %A" negs
-| StringCalculator.InvaildInput inv ->
+| StringCalculator.InvalidInput inv ->
     printf "%s" inv

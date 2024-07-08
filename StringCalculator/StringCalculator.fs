@@ -10,11 +10,11 @@ let ExtractDelimiters (delimiters : string array, numbersString : string) =
     else
         (delimiters,numbersString)
 
-exception InvaildInput of string
+exception InvalidInput of string
 let CheckInvaildInput (numbersString : string array) =
     let emptyItems = Array.filter(fun x -> x = " " || x = "") numbersString;
     if emptyItems.Length > 0 then
-        raise(InvaildInput "Invaild input format")
+        raise(InvalidInput "Invaild input format")
     numbersString
 
 let ExtractNumbers (delimiters : string array, numbersString : string) =
