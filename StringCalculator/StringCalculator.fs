@@ -8,4 +8,4 @@ let Add (numbers : string) =
     let negativeNumbers = numbers |> Array.filter(fun n -> n < 0)
     if negativeNumbers.Length > 0 then
         raise(NegativesNoAllowed negativeNumbers)
-    numbers |> Array.sum
+    numbers |>  Array.filter(fun n -> n <= 1000) |>  Array.sum
