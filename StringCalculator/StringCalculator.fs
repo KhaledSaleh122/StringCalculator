@@ -1,23 +1,43 @@
 ﻿module StringCalculator
 
-exception NegativesNoAllowed of int[]
-let Add (numbers : string) = 
-    let mutable delimiters = [|",";"\n"|]
-    let mutable numbers = numbers
-    if numbers.StartsWith("//") then
-        let inputs = numbers.Split([|'\n'|],2)
-        let customDelimiters = inputs.[0].Split([|"["; "]"; "/"|],System.StringSplitOptions.RemoveEmptyEntries)
-        delimiters <- Array.append delimiters customDelimiters
-        numbers <- inputs.[1]
 
-    let numbersString = numbers.Split(delimiters, System.StringSplitOptions.None)
-    let mutable numbers = [||]
-    try
-        numbers <- Array.map int numbersString
-    with
-       | ex -> printfn "An unexpected exception occurred: %s" ex.Message
-    printf "Numbers %A" numbers;
-    let negativeNumbers = numbers |> Array.filter(fun n -> n < 0)
+
+let ExtractDelimiters (delimiters : string array, numbersString : string) = 
+    if numbersString.StartsWith("//") then
+        let inputs = numbersString.Split([|'\n'|],2)
+        let customDelimiters = inputs.[0].Split([|"["; "]"; "/"|],System.StringSplitOptions.RemoveEmptyEntries)
+        (Array.append delimiters customDelimiters,inputs.[1])
+    else
+        (delimiters,numbersString)
+
+exception InvaildInput of string
+let CheckInvaildInput (numbersString : string array) =
+    let emptyItems = Array.filter(fun x -> x = " " || x = "") numbersString;
+    if emptyItems.Length > 0 then
+        raise(InvaildInput "Invaild input format")
+    numbersString
+
+let ExtractNumbers (delimiters : string array, numbersString : string) =
+    numbersString.Split(delimiters, System.StringSplitOptions.None)
+    |> CheckInvaildInput
+    |> Array.map int
+
+exception NegativesNoAllowed of int[]
+let NegativeCheck (numbers : int array) =
+    let negativeNumbers = Array.filter(fun n -> n < 0) numbers 
     if negativeNumbers.Length > 0 then
         raise(NegativesNoAllowed negativeNumbers)
-    numbers |>  Array.filter(fun n -> n <= 1000) |>  Array.sum
+    numbers
+
+let FliterNumbersBiggerThan1000 (numbers : int array) =
+     Array.filter(fun n -> n <= 1000) numbers
+
+let Add (numbers : string) = 
+    let  delimiters = [|",";"\n"|]
+    ExtractDelimiters(delimiters,numbers)
+    |> ExtractNumbers
+    |> NegativeCheck
+    |> FliterNumbersBiggerThan1000
+    |> Array.sum
+       
+
