@@ -3,12 +3,13 @@ using StringCalculatorCS;
 
 try
 {
-    Console.WriteLine("Sum: "+StringCalculator.Add("1,2,3,1001"));
-    Console.WriteLine("Sum: "+StringCalculator.Add("//;\n1;2,3,1001"));
-    Console.WriteLine("Sum: " + StringCalculator.Add("//[;]\n1;2,3,1001"));
-    Console.WriteLine("Sum: " + StringCalculator.Add("//[;]\n1;2,3,1001"));
-    Console.WriteLine("Sum: " + StringCalculator.Add("//[;][pp]\n1;2pp3,1001"));
-    Console.WriteLine("Sum: " + StringCalculator.Add("//[*][%%%%%%%%%%%%%%%%%%%%]\n1*2%%%%%%%%%%%%%%%%%%%%3"));
+   // Console.WriteLine("Sum: "+StringCalculator.Add("1,2,3,1001"));
+    //Console.WriteLine("Sum: "+StringCalculator.Add("//;\n1;2,3,1001"));
+   // Console.WriteLine("Sum: " + StringCalculator.Add("//[;]\n1;2,3,1001"));
+    //Console.WriteLine("Sum: " + StringCalculator.Add("//[;]\n1;2,3,1001"));
+    //Console.WriteLine("Sum: " + StringCalculator.Add("//[;][pp]\n1;2pp3,1001"));
+    //Console.WriteLine("Sum: " + StringCalculator.Add("//[*][%%%%%%%%%%%%%%%%%%%%]\n1*2%%%%%%%%%%%%%%%%%%%%3"));
+    Console.WriteLine("Sum: " + StringCalculator.Add("//[*][%%%%%%%%%%%%%%%%%%%%]\n"));
     //Console.WriteLine("Sum: "+StringCalculator.Add("//;\n-1;-2,5\n7"));
     //Console.WriteLine("Sum: " + StringCalculator.Add("//;\n1;,2"));
 }

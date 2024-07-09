@@ -20,6 +20,7 @@
 
         private static int[] ExtractNumbers(string numbers)
         {
+            if (String.IsNullOrEmpty(numbers)) return [];
             return Array.ConvertAll(
                  CheckInvaildInput(
                      numbers.Split(Delimiters.ToArray(), StringSplitOptions.None)

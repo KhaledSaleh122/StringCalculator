@@ -18,6 +18,9 @@ let CheckInvaildInput (numbersString : string array) =
     numbersString
 
 let ExtractNumbers (delimiters : string array, numbersString : string) =
+    if System.String.IsNullOrEmpty(numbersString) then
+        [||]
+    else
     numbersString.Split(delimiters, System.StringSplitOptions.None)
     |> CheckInvaildInput
     |> Array.map int
@@ -34,6 +37,9 @@ let FliterNumbersBiggerThan1000 (numbers : int array) =
 
 let Add (numbers : string) = 
     let  delimiters = [|",";"\n"|]
+    if System.String.IsNullOrEmpty(numbers) then
+        0
+    else
     ExtractDelimiters(delimiters,numbers)
     |> ExtractNumbers
     |> NegativeCheck
