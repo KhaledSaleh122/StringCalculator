@@ -5,6 +5,7 @@
         public static List<string> Delimiters { get; } = [",", "\n"];
         public static int Add(String numbers)
         {
+            if (String.IsNullOrEmpty(numbers)) return 0;
             return FliterNumbersBiggerThan1000(NegativeCheck(ExtractNumbers(ExtractDelimiters(numbers)))).Sum();
 
         }
@@ -29,8 +30,8 @@
 
         private static string[] CheckInvaildInput(string[] numbers)
         {
-            var emptyItems = numbers.Where(x => x == "" || x == " ");
-            if (emptyItems.Count() > 0)
+            var emptyItems = numbers.Where(x => x == "" || x == " ").ToArray();
+            if (emptyItems.Length > 0)
             {
                 throw new InvalidInputException("Invaild input format");
             }
