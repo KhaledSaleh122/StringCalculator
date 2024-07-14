@@ -12,7 +12,7 @@ let ExtractDelimiters (delimiters : string array, numbersString : string) =
 
 exception InvalidInput of string
 let CheckInvaildInput (numbersString : string array) =
-    let emptyItems = Array.filter(fun x -> x = " " || x = "") numbersString;
+    let emptyItems = Array.filter(fun x -> System.String.IsNullOrEmpty(x)) numbersString;
     if emptyItems.Length > 0 then
         raise(InvalidInput "Invaild input format")
     numbersString

@@ -31,7 +31,7 @@
 
         private static string[] CheckInvaildInput(string[] numbers)
         {
-            var emptyItems = numbers.Where(x => x == "" || x == " ").ToArray();
+            var emptyItems = numbers.Where(x => String.IsNullOrEmpty(x)).ToArray();
             if (emptyItems.Length > 0)
             {
                 throw new InvalidInputException("Invaild input format");
